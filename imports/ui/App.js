@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-
+import Navigation from './Navigation.js';
 import { Tasks } from '../api/tasks.js';
 
 import Task from './Task.js';
@@ -57,6 +57,8 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+        <Navigation />
       <div className="container">
         <header>
           <h1>Shopping List ({this.props.incompleteCount})</h1>
@@ -87,6 +89,7 @@ class App extends Component {
         <ul>
           {this.renderTasks()}
         </ul>
+      </div>
       </div>
     );
   }

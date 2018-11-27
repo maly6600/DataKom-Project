@@ -1,6 +1,8 @@
 import React from 'react';
-
+import ReactDOM from 'react-dom'
+import { Meteor } from 'meteor/meteor';
 import NavDropdown from './Dropdown.js';
+import { List } from '../api/lists.js';
 
 const NavItem = props => {
 	const pageURI = window.location.pathname+window.location.search
@@ -15,8 +17,13 @@ const aClassName = props.disabled ? "nav-link disabled" : "nav-link"
 }
 
 export default class Navigation extends React.Component {
-  testingFunc() {
-    console.log("this is working!")
+  submitListName(event) {
+    event.preventDefault();
+    console.log("this is working!");
+    const newListName = ReactDOM.findDOMNode(this.refs.listNameInput).value.trim();
+    console.log(newListName);
+    Meteor.call('list.create', newListName);
+
   }
 	render() {
 		return (
@@ -41,9 +48,9 @@ export default class Navigation extends React.Component {
 </NavDropdown>
             
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Type name of new list" aria-label="Search" />
-            <button className="btn btn-outline-success my-2 my-sm-0" type="button" onClick={this.testingFunc.bind(this)}>Create new list</button>
+          <form className="form-inline my-2 my-lg-0" onSubmit={this.submitListName.bind(this)}>
+            <input className="form-control mr-sm-2" type="text" ref="listNameInput" placeholder="Type name of new list" aria-label="Search" />
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Create new list</button>
           </form>
         </div>
 </nav>

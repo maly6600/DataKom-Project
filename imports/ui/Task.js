@@ -16,6 +16,7 @@ export default class Task extends Component {
   }
 
   togglePrivate() {
+    console.log("i'm in function")
     Meteor.call('tasks.setPrivate', this.props.task._id, ! this.props.task.private);
   }
 

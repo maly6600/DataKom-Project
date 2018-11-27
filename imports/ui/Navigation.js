@@ -15,6 +15,9 @@ const aClassName = props.disabled ? "nav-link disabled" : "nav-link"
 }
 
 export default class Navigation extends React.Component {
+  testingFunc() {
+    console.log("this is working!")
+  }
 	render() {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -39,8 +42,8 @@ export default class Navigation extends React.Component {
             
           </ul>
           <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input className="form-control mr-sm-2" type="search" placeholder="Type name of new list" aria-label="Search" />
+            <button className="btn btn-outline-success my-2 my-sm-0" type="button" onClick={this.testingFunc.bind(this)}>Create new list</button>
           </form>
         </div>
 </nav>
